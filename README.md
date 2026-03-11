@@ -6,12 +6,19 @@
 * Play/pause drag rewind
 * Fullscreen open/close.
 
+## Currently under development
+
+* Improving app achitecture to MVVM
+* Clean Architecture
+* All video list feature
+
 ## Future
 
 * Connecting to the server and pick any video from it
 * Play any video from server (core) & etc.
 * User stats
 * Progress of watching video
+  
 
 ## Screenshots
 <p aling = "center" >
