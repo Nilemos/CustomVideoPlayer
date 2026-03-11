@@ -1,4 +1,4 @@
-# Simple videoplayer project using ExoPlayer.
+# Simple videoplayer project using ExoPlayer & Media3.
 
 ## Core Functionality: 
 
