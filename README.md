@@ -15,4 +15,4 @@
 
 ## Screenshots
 
-![Starting screen](https://drive.google.com/drive/folders/1-YhYuJTojDC519CdP9uZE91zt048dYHW?usp=sharing/Screenshot1.png)
+![Starting screen](https://drive.google.com/drive/folders/1-YhYuJTojDC519CdP9uZE91zt048dYHW?usp=sharing/Screenshot1.png](https://drive.google.com/file/d/1o9XjiRD-I1cx0y4cFF58Tu00wdips7XR/view?usp=share_link))
