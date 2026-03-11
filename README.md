@@ -14,5 +14,11 @@
 * Progress of watching video
 
 ## Screenshots
+<p aling = "center" >
+<img width = "200px" src = "https://github.com/Nilemos/pictures/blob/main/screens/Screenshot1.png">
+  <img width = "200px" src = "https://github.com/Nilemos/pictures/blob/main/screens/Screenshot2.png">
+    <img width = "200px" src = "https://github.com/Nilemos/pictures/blob/main/screens/Screenshot5.png"/>
+      <img width = "600px" src = "https://github.com/Nilemos/pictures/blob/main/screens/Screenshot4.png">
 
-![Starting screen](https://github.com/Nilemos/pictures/blob/main/screens/Screenshot1.png)
+</p>
+
