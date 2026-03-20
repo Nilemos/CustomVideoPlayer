@@ -1,8 +1,7 @@
 @file:OptIn(ExperimentalMaterial3Api::class)
 
-package com.example.customvideoplayer
+package com.example.customvideoplayer.presentation
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -30,8 +29,8 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.customvideoplayer.R
 import java.util.Locale
 
 @Composable
@@ -49,7 +48,7 @@ fun PlayerUi(
     modifier: Modifier = Modifier
 ){
     Box(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .background(
                 brush = Brush.verticalGradient(
@@ -88,8 +87,6 @@ fun PlayerUi(
             }
         }
 
-
-
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -110,7 +107,7 @@ fun PlayerUi(
                 onValueChangeFinished = {
                     onSeekBarPositionChangeFinished(currentPosition)
                 },
-                valueRange = 0f..duration.toFloat(),
+                valueRange = 0f..duration.toFloat().coerceAtLeast(1f),
                 modifier = Modifier
                     .weight(1f),
                 thumb = {
@@ -129,9 +126,10 @@ fun PlayerUi(
                             .clip(RoundedCornerShape(2.dp))
                             .background(MaterialTheme.colorScheme.onSurfaceVariant)
                     ) {
+                        val progress = if (duration > 0) sliderState.value / duration else 0f
                         Box(
                             modifier = Modifier
-                                .fillMaxWidth(sliderState.value / duration)
+                                .fillMaxWidth(progress)
                                 .fillMaxHeight()
                                 .background(MaterialTheme.colorScheme.primary)
                         )
