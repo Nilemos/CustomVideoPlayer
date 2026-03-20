@@ -8,22 +8,48 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.customvideoplayer.data.repository.VideoRepositoryImpl
+import com.example.customvideoplayer.domain.usecase.GetSelectedVideoUseCase
+import com.example.customvideoplayer.domain.usecase.SetSelectedVideoUseCase
+import com.example.customvideoplayer.presentation.MediaPickerScreen
+import com.example.customvideoplayer.presentation.VideoPlayerViewModel
 import com.example.customvideoplayer.ui.theme.CustomVideoPlayerTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
+        
+        // Manual DI for demonstration purposes
+        val repository = VideoRepositoryImpl()
+        val getSelectedVideoUseCase = GetSelectedVideoUseCase(repository)
+        val setSelectedVideoUseCase = SetSelectedVideoUseCase(repository)
+        
         setContent {
             CustomVideoPlayerTheme {
-                Scaffold(modifier = Modifier.fillMaxSize(),
-                        contentWindowInsets = WindowInsets(0)
-                    ) { innerPadding ->
+                val viewModel: VideoPlayerViewModel = viewModel(
+                    factory = object : ViewModelProvider.Factory {
+                        @Suppress("UNCHECKED_CAST")
+                        override fun <T : ViewModel> create(modelClass: Class<T>): T {
+                            return VideoPlayerViewModel(
+                                application = application,
+                                getSelectedVideoUseCase = getSelectedVideoUseCase,
+                                setSelectedVideoUseCase = setSelectedVideoUseCase
+                            ) as T
+                        }
+                    }
+                )
+
+                Scaffold(
+                    modifier = Modifier.fillMaxSize(),
+                    contentWindowInsets = WindowInsets(0)
+                ) { innerPadding ->
                     MediaPickerScreen(
+                        viewModel = viewModel,
                         modifier = Modifier
                             .fillMaxSize()
                             .padding(innerPadding)
@@ -31,21 +57,5 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    CustomVideoPlayerTheme {
-        Greeting("Android")
     }
 }
